@@ -1,13 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import RomeoProfileImage from './components/RomeoProfileImage';
 import React, { useEffect, useState } from 'react';
-import RomeoProfile from './network/model/RomeoProfileResponse';
 import getProfiles from './network/RomeoRequests';
+import RomeoProfileUiItem from './components/RomeoProfileItem';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import ProfileModel from './model/ProfileModel';
 
 export default function App() {
 
-  const [data, setData] = useState<RomeoProfile[]>([]);
+  const [data, setData] = useState<ProfileModel[]>([]);
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -23,26 +23,28 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <RomeoProfileImage url="https://picsum.photos/424/424" />
-      <FlatList
-        data={data}
-        keyExtractor={({ id }) => id}
-        renderItem={({ item }) => (
-          <Text style={{ color: 'black', fontSize: 13 }}>
-            {item.name} some text
-          </Text>
-        )}
-      />
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <FlatList
+            data={data}
+            numColumns={2}
+            keyExtractor={({ id }) => id}
+            renderItem={({ item }) => (
+              <RomeoProfileUiItem profile={item} />
+            )}
+          />
 
-    </View>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },

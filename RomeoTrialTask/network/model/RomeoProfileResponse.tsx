@@ -3,7 +3,7 @@ type RomeoProfile = {
     name: string,
     online_status: string,
     is_plus: string,
-    picture: RomeoProfilePicture
+    picture?: RomeoProfilePicture
     last_login: string
 }
 
