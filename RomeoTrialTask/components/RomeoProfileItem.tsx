@@ -13,6 +13,7 @@ const RomeoProfileUiItem = (props: RomeoProfileItemProp) => {
     }}>
         <RomeoProfileImage url={props.profile.picture_url} />
 
+        <Image style={styles.online_status} source={require('../assets/images/online_status.png')} />
         <View style={{
             flexDirection: 'column-reverse',
             position: 'absolute',
@@ -46,6 +47,10 @@ const RomeoProfileUiItem = (props: RomeoProfileItemProp) => {
 export default RomeoProfileUiItem
 
 const styles = StyleSheet.create({
+    online_status: {
+        marginHorizontal: 8,
+        marginVertical: 8
+    },
     username: {
         fontSize: 16,
         lineHeight: 24,
