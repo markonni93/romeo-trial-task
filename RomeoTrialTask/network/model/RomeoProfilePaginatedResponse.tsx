@@ -1,8 +1,13 @@
-import RomeoProfile from "./RomeoProfileResponse"
+import RomeoProfile from "./RomeoProfileResponse";
 
 type RomeoResponse = {
-    cursors: 'string'
-    items: RomeoProfile[]
-}
+  cursors: CursorResponse;
+  items: RomeoProfile[];
+  total: number;
+};
+
+type CursorResponse = {
+  after: "string";
+};
 
 export default RomeoResponse;
